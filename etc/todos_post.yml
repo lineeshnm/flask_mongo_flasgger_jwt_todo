@@ -1,0 +1,32 @@
+summary: "Create a new Todo"
+description: "This api is used for adding a todo item"
+tags: 
+  - "Notification"
+consumes:
+- "application/json"
+produces:
+- "text"
+parameters:
+- in: "body"
+  name: "body"
+  description: "requires type, message, status"
+  required: true
+  schema:
+    type: "object"
+    properties:
+      origin:
+        type: "string"
+        example: "Activity"
+      message:
+        type: "string"
+        example: "Patching activity on GL NP2"
+      status:
+        type: "string"
+        example: "Progress"
+responses:
+  200: 
+    description: "OK"
+  500:
+    description: "Invalid input"
+  401:
+    description: "Unauthorized"

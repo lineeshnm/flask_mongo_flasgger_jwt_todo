@@ -1,0 +1,13 @@
+summary: "Home"
+description: "This api is used health check only"
+tags: 
+  - "General"
+produces:
+- "text"
+responses:
+  200: 
+    description: "OK"
+  500:
+    description: "Invalid input"
+  401:
+    description: "Unauthorized"

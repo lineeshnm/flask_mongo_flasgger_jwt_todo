@@ -1,0 +1,24 @@
+summary: "Delete a Todo"
+description: "This api is used for adding a todo item"
+tags: 
+  - "Notification"
+consumes:
+- "application/json"
+produces:
+- "text"
+security:
+- APIKeyHeader: ['x-access-token']
+parameters:
+- in: "path"
+  name: "item_id"
+  type: string
+  required: true
+  description: "requires item_id"
+  required: true
+responses:
+  200: 
+    description: "OK"
+  500:
+    description: "Invalid input"
+  401:
+    description: "Unauthorized"

@@ -1,0 +1,33 @@
+summary: "Signup"
+description: "This api is used for signup"
+tags: 
+  - "User"
+consumes:
+- "application/json"
+produces:
+- "text"
+parameters:
+- in: "body"
+  name: "body"
+  description: "Accept username, email and password"
+  required: true
+  schema:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        exmaple: "Lineesh"
+      email:
+        type: "string"
+        example: "lineesh2009@gmail.com"
+      password:
+        type: "string"
+        format: "password"
+        example: "abcd1234"
+responses:
+  200: 
+    description: "OK"
+  500:
+    description: "Invalid input"
+  401:
+    description: "Unauthorized"

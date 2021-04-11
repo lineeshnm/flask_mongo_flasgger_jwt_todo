@@ -1,0 +1,13 @@
+summary: "Get all Todos"
+description: "This api is used for getting all todo items"
+tags: 
+  - "Notification"
+produces:
+- "text"
+responses:
+  200: 
+    description: "OK"
+  500:
+    description: "Invalid input"
+  401:
+    description: "Unauthorized"
