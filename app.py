@@ -9,6 +9,7 @@ from flask_bcrypt import Bcrypt
 from functools import wraps
 from flasgger import Swagger, swag_from
 from pprint import pprint as pp
+from flask_socketio import SocketIO, emit, Namespace
 
 # Create an APISpec
 template = {
@@ -55,6 +56,7 @@ app.config['SWAGGER'] = {
     'uiversion': 3,
     "specs_route": "/swagger/"
 }
+socketio = SocketIO(app, cors_allowed_origins="*")
 swagger = Swagger(app, template= template)
 
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -82,6 +84,7 @@ def tokenReq(f):
 @app.route('/')
 @swag_from('etc/home.yml')
 def func():
+    socketio.emit('data_refesh', namespace='/socket')
     return "😺", 200
 
 # get all and insert one
@@ -264,6 +267,15 @@ def login():
         code = 500
         status = "fail"
     return jsonify({'status': status, "data": res_data, "message":message}), code
+
+class MyCustomNamespace(Namespace):
+    def on_connect(self):
+        print("Client just connected")
+
+    def on_disconnect(self):
+        print("Client just left")
+
+socketio.on(MyCustomNamespace('/socket'))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port='8000')
